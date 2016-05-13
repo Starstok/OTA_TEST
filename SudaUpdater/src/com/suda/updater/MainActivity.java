@@ -77,7 +77,7 @@ public class MainActivity extends Activity
                 else if(flag.equals("disk"))
                 {
 
-                    Uri uri = Uri.parse(ydss_url);
+                    Uri uri = Uri.parse(ota_url);
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
                 }
