@@ -77,7 +77,7 @@ public class MainActivity extends Activity
                 else if(flag.equals("disk"))
                 {
 
-                    Uri uri = Uri.parse(ota_url);
+                    Uri uri = Uri.parse(weibo_url);
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
                 }
@@ -204,7 +204,7 @@ public class MainActivity extends Activity
         try
         {
             strlatest = HttpTools.getcontent(getResources().getString(R.string.base_url) + "version"); //获取版本号
-            ota_url = HttpTools.getcontent(getResources().getString(R.string.base_url) + "ota_url"); //获取链接
+            weibo_url = HttpTools.getcontent(getResources().getString(R.string.base_url) + "ota_url"); //获取链接
 
 
             if(strcurrent.equals(strlatest))
