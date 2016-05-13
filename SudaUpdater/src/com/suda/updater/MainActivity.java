@@ -32,13 +32,13 @@ public class MainActivity extends Activity
     private TextView tvversion_msg;
     private Button btck;
     private RelativeLayout rl;
-    private String flag = "check";//°´Å¥¼ì²â±êÖ¾
-    private String mWay = null;//ĞÇÆÚ
-    private String ydss_url = "http://bbs.ydss.cn"; //ÏÂÔØ¸üĞÂ¶¨Î»µÄÍøÖ·£¬¿ÉÒÔĞ´ÔÚgithub(ydss_url)
-    private String strlatest = SystemProperties.get("ro.mk.version");  //×îĞÂ°æ±¾
-    private String strcurrent  = SystemProperties.get("ro.mk.version");  //±¾µØ°æ±¾
-    //µ÷ÓÃSystemProperties.get("ro.mk.version");
-    //ĞèÒªµ¼Èëlayoutlib.jar ¾ßÌå¿ÉÒÔ²Î¿¼http://blog.sina.com.cn/s/blog_6b597ccb0100ywrw.html
+    private String flag = "check";//æŒ‰é’®æ£€æµ‹æ ‡å¿—
+    private String mWay = null;//æ˜ŸæœŸ
+    private String weibo_url = "http://weibo.com/Starstok"; //ä¸‹è½½æ›´æ–°å®šä½çš„ç½‘å€ï¼Œå¯ä»¥å†™åœ¨github(weibo_url)
+    private String strlatest = SystemProperties.get("ro.cm.version");  //æœ€æ–°ç‰ˆæœ¬
+    private String strcurrent  = SystemProperties.get("ro.cm.version");  //æœ¬åœ°ç‰ˆæœ¬
+    //è°ƒç”¨SystemProperties.get("ro.mk.version");
+    //éœ€è¦å¯¼å…¥layoutlib.jar å…·ä½“å¯ä»¥å‚è€ƒhttp://blog.sina.com.cn/s/blog_6b597ccb0100ywrw.html
     
     
     @SuppressLint("NewApi")
@@ -57,9 +57,9 @@ public class MainActivity extends Activity
         btck = (Button) findViewById(R.id.buttonck);
         rl = (RelativeLayout) findViewById(R.id.topLayout);
 
-        tvversion_msg.setText("µ±Ç°°æ±¾:" + strcurrent);
+        tvversion_msg.setText("å½“å‰ç‰ˆæœ¬:" + strcurrent);
 
-        //°´Å¥¹¦ÄÜËæflag¸Ä±ä
+        //æŒ‰é’®åŠŸèƒ½éšflagæ”¹å˜
         btck.setOnClickListener(new View.OnClickListener()
         {
 
@@ -85,15 +85,15 @@ public class MainActivity extends Activity
             }
         });
 
-        //¸üĞÂÈÕÖ¾
+        //æ›´æ–°æ—¥å¿—
         rl.setOnClickListener(new View.OnClickListener()
         {
 
             @Override
             public void onClick(View v)
             {
-                // TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
-                if(strlatest == strcurrent || strlatest == null) //Îª¿Õ»òÎªµ±Ç°°æ±¾ÏÔÊ¾µ±Ç°ÈÕÖ¾
+                // TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
+                if(strlatest == strcurrent || strlatest == null) //ä¸ºç©ºæˆ–ä¸ºå½“å‰ç‰ˆæœ¬æ˜¾ç¤ºå½“å‰æ—¥å¿—
                 {
                     Intent it = new Intent(MainActivity.this, UpdateInfo.class);
                     Bundle bundle = new Bundle();
@@ -116,20 +116,20 @@ public class MainActivity extends Activity
         });
 
 
-        //Ã¿ÖÜÎåÁùÈÕÆô¶¯×ÔĞĞ¼ì²âÒ»´Î
+        //æ¯å‘¨äº”å…­æ—¥å¯åŠ¨è‡ªè¡Œæ£€æµ‹ä¸€æ¬¡
         Calendar c = Calendar.getInstance();
         mWay = String.valueOf(c.get(Calendar.DAY_OF_WEEK));
 
         if("1".equals(mWay) || "6".equals(mWay) || "7".equals(mWay))
         {
             check checktask = new check();
-            checktask.execute();//Èç¹ûÎªĞÇÆÚÎå£¬Áù£¬ÈÕ£¬Èí¼ş´ò¿ª×Ô¶¯¼ì²âÒ»´Î
+            checktask.execute();//å¦‚æœä¸ºæ˜ŸæœŸäº”ï¼Œå…­ï¼Œæ—¥ï¼Œè½¯ä»¶æ‰“å¼€è‡ªåŠ¨æ£€æµ‹ä¸€æ¬¡
         }
     }
 
 
 
-    //ºóÌ¨Ö´ĞĞ£¬·ÀÖ¹¿¨ËÀ
+    //åå°æ‰§è¡Œï¼Œé˜²æ­¢å¡æ­»
     private class check extends AsyncTask<Object, Integer, Integer>
     {
 
@@ -139,17 +139,17 @@ public class MainActivity extends Activity
 
         protected void onPreExecute()
         {
-            btck.setText("¼ì²âÖĞ¡£¡£¡£");
+            btck.setText("æ£€æµ‹ä¸­ã€‚ã€‚ã€‚");
         }
 
-        // ÔÚºóÌ¨ÔËĞĞ
+        // åœ¨åå°è¿è¡Œ
 
 
         /**
-         * ÕâÀïµÄObject²ÎÊı¶ÔÓ¦AsyncTaskÖĞµÄµÚÒ»¸ö²ÎÊı
-         * ÕâÀïµÄInt·µ»ØÖµ¶ÔÓ¦AsyncTaskµÄµÚÈı¸ö²ÎÊı
-         * ¸Ã·½·¨²¢²»ÔËĞĞÔÚUIÏß³Ìµ±ÖĞ£¬Ö÷ÒªÓÃÓÚÒì²½²Ù×÷£¬ËùÓĞÔÚ¸Ã·½·¨ÖĞ²»ÄÜ¶ÔUIµ±ÖĞµÄ¿Õ¼ä½øĞĞÉèÖÃºÍĞŞ¸Ä
-         * µ«ÊÇ¿ÉÒÔµ÷ÓÃpublishProgress·½·¨´¥·¢onProgressUpdate¶ÔUI½øĞĞ²Ù×÷
+         * è¿™é‡Œçš„Objectå‚æ•°å¯¹åº”AsyncTaskä¸­çš„ç¬¬ä¸€ä¸ªå‚æ•°
+         * è¿™é‡Œçš„Intè¿”å›å€¼å¯¹åº”AsyncTaskçš„ç¬¬ä¸‰ä¸ªå‚æ•°
+         * è¯¥æ–¹æ³•å¹¶ä¸è¿è¡Œåœ¨UIçº¿ç¨‹å½“ä¸­ï¼Œä¸»è¦ç”¨äºå¼‚æ­¥æ“ä½œï¼Œæ‰€æœ‰åœ¨è¯¥æ–¹æ³•ä¸­ä¸èƒ½å¯¹UIå½“ä¸­çš„ç©ºé—´è¿›è¡Œè®¾ç½®å’Œä¿®æ”¹
+         * ä½†æ˜¯å¯ä»¥è°ƒç”¨publishProgressæ–¹æ³•è§¦å‘onProgressUpdateå¯¹UIè¿›è¡Œæ“ä½œ
          */
 
 
@@ -169,25 +169,25 @@ public class MainActivity extends Activity
             {
             case 0:
                 Toast.makeText(MainActivity.this, getResources().getString(R.string.isnew), Toast.LENGTH_SHORT).show();
-                btck.setText("¼ì²â¸üĞÂ");
+                btck.setText("æ£€æµ‹æ›´æ–°");
                 break;
             case 1:
-                tvversion_msg.setText("×îĞÂ°æ±¾:" + strlatest);
+                tvversion_msg.setText("æœ€æ–°ç‰ˆæœ¬:" + strlatest);
                 flag = "disk";
                 Toast.makeText(MainActivity.this, getResources().getString(R.string.nisnew), Toast.LENGTH_SHORT).show();
-                btck.setText("ÏÂÔØ¸üĞÂ");
+                btck.setText("ä¸‹è½½æ›´æ–°");
                 break;
             case 2:
                 Toast.makeText(MainActivity.this, getResources().getString(R.string.net_error), Toast.LENGTH_SHORT).show();
-                btck.setText("¼ì²â¸üĞÂ");
+                btck.setText("æ£€æµ‹æ›´æ–°");
                 break;
             }
         }
 
         /**
-         * ÕâÀïµÄIntege²ÎÊı¶ÔÓ¦AsyncTaskÖĞµÄµÚ¶ş¸ö²ÎÊı
-         * ÔÚdoInBackground·½·¨µ±ÖĞ£¬£¬Ã¿´Îµ÷ÓÃpublishProgress·½·¨¶¼»á´¥·¢onProgressUpdateÖ´ĞĞ
-         * onProgressUpdateÊÇÔÚUIÏß³ÌÖĞÖ´ĞĞ£¬ËùÓĞ¿ÉÒÔ¶ÔUI¿Õ¼ä½øĞĞ²Ù×÷
+         * è¿™é‡Œçš„Integeå‚æ•°å¯¹åº”AsyncTaskä¸­çš„ç¬¬äºŒä¸ªå‚æ•°
+         * åœ¨doInBackgroundæ–¹æ³•å½“ä¸­ï¼Œï¼Œæ¯æ¬¡è°ƒç”¨publishProgressæ–¹æ³•éƒ½ä¼šè§¦å‘onProgressUpdateæ‰§è¡Œ
+         * onProgressUpdateæ˜¯åœ¨UIçº¿ç¨‹ä¸­æ‰§è¡Œï¼Œæ‰€æœ‰å¯ä»¥å¯¹UIç©ºé—´è¿›è¡Œæ“ä½œ
          */
         @Override
         protected void onProgressUpdate(Integer... values)
@@ -203,8 +203,8 @@ public class MainActivity extends Activity
         int tmp;
         try
         {
-            strlatest = HttpTools.getcontent(getResources().getString(R.string.base_url) + "version"); //»ñÈ¡°æ±¾ºÅ
-            ydss_url = HttpTools.getcontent(getResources().getString(R.string.base_url) + "ydss_url"); //»ñÈ¡Á´½Ó
+            strlatest = HttpTools.getcontent(getResources().getString(R.string.base_url) + "version"); //è·å–ç‰ˆæœ¬å·
+            ota_url = HttpTools.getcontent(getResources().getString(R.string.base_url) + "ota_url"); //è·å–é“¾æ¥
 
 
             if(strcurrent.equals(strlatest))
@@ -225,9 +225,9 @@ public class MainActivity extends Activity
     }
 
 
-    //²Ëµ¥Ñ¡Ïî
+    //èœå•é€‰é¡¹
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)//Ìí¼Óµ×²¿²Ëµ¥£¨ÖØÆôrecºÍ¹ØÓÚ£©
+    public boolean onCreateOptionsMenu(Menu menu)//æ·»åŠ åº•éƒ¨èœå•ï¼ˆé‡å¯recå’Œå…³äºï¼‰
     {
         menu.add(0, 1, 1, getResources().getString(R.string.recovey));
         menu.add(0, 2, 2, getResources().getString(R.string.about));
@@ -250,7 +250,7 @@ public class MainActivity extends Activity
                 }
             });
             ad.setNegativeButton(getResources().getString(R.string.cancel), null);
-            ad.show();//ÏÔÊ¾¶Ô»°¿ò
+            ad.show();//æ˜¾ç¤ºå¯¹è¯æ¡†
         }
 
 
